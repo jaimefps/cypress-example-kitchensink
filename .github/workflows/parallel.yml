@@ -5,22 +5,6 @@ name: Using Cypress GH Action
 on: [push, workflow_dispatch]
 
 jobs:
-  single-run:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Cypress run
-        uses: cypress-io/github-action@v4
-        timeout-minutes: 10
-        with:
-          build: npm run build
-          start: npm start
-      - name: Print CI env variables
-        run: |
-          npm i -g @bahmutov/print-env@2
-          print-env GITHUB BUILD ACTIONS || true
-
   parallel-runs:
     name: Parallel 4x
     runs-on: ubuntu-18.04
@@ -38,6 +22,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+        
+      - name: Print CI env variables
+        run: |
+          npm i -g @bahmutov/print-env@2
+          print-env GITHUB BUILD ACTIONS || true
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
