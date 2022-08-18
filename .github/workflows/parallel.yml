@@ -16,6 +16,10 @@ jobs:
         with:
           build: npm run build
           start: npm start
+      - name: Print CI env variables
+        run: |
+          npm i -g @bahmutov/print-env@2
+          print-env GITHUB BUILD ACTIONS || true
 
   parallel-runs:
     name: Parallel 4x
