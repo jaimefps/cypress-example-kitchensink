@@ -21,6 +21,7 @@ describe('example to-do app', () => {
   })
 
   it('displays two todo items by default', () => {
+    // eslint-disable-next-line
     throw new Error('foo')
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
