@@ -20,6 +20,7 @@ jobs:
   parallel-runs:
     name: Parallel 4x
     runs-on: ubuntu-18.04
+    needs: ['prepare']
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -55,3 +56,16 @@ jobs:
           # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.dashboardRecordKey }}
           CYPRESS_INTERNAL_ENV: staging
+
+# jobs:
+#   smoke-tests:
+    
+#     steps:
+#       - uses: actions/checkout@v2
+#       - uses: cypress-io/github-action@v4
+#         with:
+#           record: true
+#           parallel: true
+#         env:
+#           # pass the Dashboard record key as an environment variable
+#           CYPRESS_RECORD_KEY: ${{ secrets.EXAMPLE_RECORDING_KEY }}
