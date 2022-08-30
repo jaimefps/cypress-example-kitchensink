@@ -7,6 +7,7 @@ on: [push, workflow_dispatch]
 jobs:
   # single job that generates and outputs a common id
   prepare:
+    runs-on: ubuntu-18.04
     outputs:
       uuid: ${{ steps.uuid.outputs.value }}
     steps:
@@ -49,7 +50,7 @@ jobs:
         with:
           record: true
           parallel: true
-          ci-build-id: '${{ needs.context.outputs.uuid }}'
+          ci-build-id: ${{ needs.context.outputs.uuid }}
           group: GH Action parallel
           start: npm start
         env:
