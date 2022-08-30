@@ -50,7 +50,7 @@ jobs:
         with:
           record: true
           parallel: true
-#           ci-build-id: ${{ needs.prepare.outputs.uuid }}
+          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
           group: GH Action parallel
           start: npm start
         env:
