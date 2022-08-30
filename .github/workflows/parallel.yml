@@ -9,7 +9,7 @@ jobs:
   prepare:
     runs-on: ubuntu-20.04
     outputs:
-      uuid: ${{ steps.uuid.outputs.value }}
+      uuid: ${{ needs.context.outputs.uuid }}
     steps:
       - name: Generate unique ID 💎
         id: uuid
