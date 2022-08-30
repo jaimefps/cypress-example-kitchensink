@@ -7,9 +7,8 @@ on: [push, workflow_dispatch]
 jobs:
   # single job that generates and outputs a common id
   prepare:
-    runs-on: ubuntu-20.04
     outputs:
-      uuid: ${{ needs.context.outputs.uuid }}
+      uuid: ${{ steps.uuid.outputs.value }}
     steps:
       - name: Generate unique ID 💎
         id: uuid
@@ -21,7 +20,7 @@ jobs:
   parallel-runs:
     name: Parallel 4x
     runs-on: ubuntu-18.04
-    needs: ['prepare']
+    needs: ['prepare','context']
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -50,7 +49,7 @@ jobs:
         with:
           record: true
           parallel: true
-          ci-build-id: ${{ needs.context.outputs.uuid }}
+          ci-build-id: '${{ needs.context.outputs.uuid }}'
           group: GH Action parallel
           start: npm start
         env:
