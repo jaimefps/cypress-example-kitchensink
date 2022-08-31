@@ -1,4 +1,5 @@
+/* eslint-disable */
+
 module.exports = {
-  'projectId': 'thpytr',
-  e2e: {}
+  'projectId': 'wrw23t',
 }
