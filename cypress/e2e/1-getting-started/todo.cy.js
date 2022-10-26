@@ -8,6 +8,6 @@ describe("example test", () => {
       throw new Error("Intentional Error");
     }
 
-    expect(true).to.equal(true)
+    expect(true).to.equal(false)
   });
 });
